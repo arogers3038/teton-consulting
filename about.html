@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Andrew Rogers | Teton Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2a78;
+      --navy-dark: #141c55;
+      --navy-light: #2d3d9e;
+      --white: #ffffff;
+      --off-white: #f5f5f2;
+      --gray: #8a8f9e;
+      --text: #1a1a2e;
+      --accent: #52b788;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; color: var(--text); background: var(--off-white); }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 60px;
+      background: #0d1340;
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid rgba(255,255,255,0.35);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 52px; width: auto; }
+
+    .nav-wordmark { display: none; }
+
+    .nav-wordmark span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-wordmark span:last-child {
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%);
+      padding: 110px 60px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .page-header-content { position: relative; z-index: 2; }
+
+    .page-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    /* ABOUT LAYOUT */
+    .about-body {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 0;
+      min-height: 600px;
+      align-items: start;
+    }
+
+    .about-sidebar {
+      background: var(--white);
+      padding: 60px 44px;
+      border-right: 1px solid #e8e8e8;
+      width: 340px;
+      min-width: 340px;
+    }
+
+    .sidebar-photo {
+      width: 252px;
+      height: 315px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      margin-bottom: 32px;
+      background: #e8e8e8;
+    }
+
+    .sidebar-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .sidebar-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .sidebar-detail {
+      margin-bottom: 16px;
+    }
+
+    .sidebar-detail-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 4px;
+    }
+
+    .sidebar-detail-value {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .sidebar-links {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--navy);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .sidebar-links a:hover { color: var(--accent); }
+
+    .sidebar-links svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* MAIN CONTENT */
+    .about-main {
+      padding: 60px 64px;
+      background: var(--off-white);
+    }
+
+    .about-section {
+      margin-bottom: 56px;
+    }
+
+    .about-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .about-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .about-section p {
+      font-size: 14px;
+      font-weight: 300;
+      color: #444;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    /* ACHIEVEMENTS */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .achievement-card {
+      background: var(--white);
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+    }
+
+    .achievement-card p {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    /* EXPERTISE TAGS */
+    .expertise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      padding: 7px 16px;
+      background: var(--white);
+      border: 1px solid #ddd;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+    }
+
+    /* CTA */
+    .cta-band {
+      background: var(--accent);
+      padding: 72px 60px;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300;
+      color: var(--navy-dark);
+      margin-bottom: 16px;
+    }
+
+    .cta-band p {
+      font-size: 14px;
+      color: var(--navy-dark);
+      opacity: 0.8;
+      margin-bottom: 36px;
+    }
+
+    .btn-dark {
+      display: inline-block;
+      padding: 14px 40px;
+      background: var(--navy-dark);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+
+    .btn-dark:hover { background: var(--navy); transform: translateY(-1px); }
+
+    footer {
+      background: var(--navy-dark);
+      padding: 40px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-right { display: flex; gap: 28px; }
+
+    .footer-right a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .page-header { padding: 120px 24px 60px; }
+      .about-body { grid-template-columns: 1fr; }
+      .about-main { padding: 40px 24px; }
+      .about-sidebar { padding: 40px 24px; }
+      .achievements-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="Original_Logo.png" alt="Teton Consulting logo" onerror="this.style.display='none'">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-content">
+    <p class="page-eyebrow">The Principal</p>
+    <h1>Andrew Rogers</h1>
+  </div>
+</div>
+
+<div class="about-body">
+
+  <div class="about-sidebar">
+    <img class="sidebar-photo" src="Image.jpeg" alt="Andrew Rogers">
+    <div class="sidebar-name">Andrew Rogers</div>
+    <div class="sidebar-title">Founder, Teton Consulting</div>
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-detail">
+      <div class="sidebar-detail-label">Experience</div>
+      <div class="sidebar-detail-value">15+ Years C-Suite</div>
+    </div>
+    <div class="sidebar-detail">
+      <div class="sidebar-detail-label">Exits</div>
+      <div class="sidebar-detail-value">3 Exits, $300M+ Total</div>
+    </div>
+    <div class="sidebar-detail">
+      <div class="sidebar-detail-label">Focus</div>
+      <div class="sidebar-detail-value">DTC, SaaS, AI, Consumer Products, Health &amp; Wellness</div>
+    </div>
+
+    <div class="sidebar-links">
+      <a href="https://linkedin.com/in/andrew-rogers-z3038" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn Profile
+      </a>
+      <a href="mailto:arogers3038@gmail.com">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        arogers3038@gmail.com
+      </a>
+      <a href="services.html">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg>
+        View Services
+      </a>
+    </div>
+  </div>
+
+  <div class="about-main">
+
+    <div class="about-section">
+      <div class="about-section-label">Background</div>
+      <h2>CEO, Founder, and Operating Executive</h2>
+      <p>I'm a CEO, founder, and operating executive who specializes in scaling and optimizing growth-stage DTC e-commerce, consumer product manufacturing, and health and wellness companies, both VC/PE-backed and family-owned. In 15+ years in C-suite roles, I've driven three exits totaling $300M+, led numerous funding rounds, and managed multiple successful turnarounds and high-growth scaling initiatives.</p>
+      <p>My teams have consistently delivered 20-50% revenue growth and 50%+ EBITDA improvements through bold growth strategies, disciplined execution, and operational excellence.</p>
+    </div>
+
+    <div class="about-section">
+      <div class="about-section-label">Select Achievements</div>
+      <h2>A Track Record of Results</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <p>Co-founded Craftsy, scaling to $4M revenue run rate in 11 months and raising multiple funding rounds. The company was later acquired by NBCUniversal for $243M.</p>
+        </div>
+        <div class="achievement-card">
+          <p>Built HomeAdvisor's digital marketing engine from the ground up, scaling customer acquisition to $80M annually while doubling company revenue to $250M+.</p>
+        </div>
+        <div class="achievement-card">
+          <p>Turned around Upbeet Brands, a health and wellness company, achieving sustained profitability within 18 months.</p>
+        </div>
+        <div class="achievement-card">
+          <p>Transformed Hobie Cat, the iconic watersports brand, returning it to profitability and growth and ultimately leading to a successful exit.</p>
+        </div>
+        <div class="achievement-card">
+          <p>Raised $10M+ in venture capital, managed P&Ls up to $100M, and led companies through successful exits to both strategic and financial buyers.</p>
+        </div>
+        <div class="achievement-card">
+          <p>Built and led teams ranging from 20 to 350 employees across DTC e-commerce, consumer products, B2B services, and health and wellness.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <div class="about-section-label">My Approach</div>
+      <h2>Fundamentals First. Always.</h2>
+      <p>I focus on fundamentals: building high-performing teams, creating scalable processes, and using data to drive decisions. Whether it's zero-to-one builds, GTM strategy development, P&L management, rapid growth scenarios, or complex turnarounds, I prioritize operational rigor, capital efficiency, and sustainable value creation.</p>
+      <p>Teton Consulting was founded to bring that operator discipline to growth-stage companies that need experienced leadership and a strategic partner, without the overhead of a full-time executive hire.</p>
+    </div>
+
+    <div class="about-section">
+      <div class="about-section-label">Industries and Expertise</div>
+      <h2>Where I Work Best</h2>
+      <div class="expertise-tags">
+        <span class="tag">DTC E-Commerce</span>
+        <span class="tag">Consumer Brands</span>
+        <span class="tag">Health &amp; Wellness</span>
+        <span class="tag">SaaS</span>
+        <span class="tag">AI &amp; Digital Services</span>
+        <span class="tag">B2B Services</span>
+        <span class="tag">Zero-to-One Builds</span>
+        <span class="tag">GTM Strategy</span>
+        <span class="tag">P&amp;L Management</span>
+        <span class="tag">Turnarounds</span>
+        <span class="tag">Capital Raising</span>
+        <span class="tag">AI Integration</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="cta-band">
+  <h2>Let's Work Together</h2>
+  <p>Reach out to explore how Teton Consulting can support your next stage of growth.</p>
+  <a href="mailto:arogers3038@gmail.com" class="btn-dark">Get in Touch</a>
+</div>
+
+<footer>
+  <div class="footer-left">&copy; 2025 Teton Consulting. All rights reserved.</div>
+  <div class="footer-right">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="https://linkedin.com/in/andrew-rogers-z3038" target="_blank">LinkedIn</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
