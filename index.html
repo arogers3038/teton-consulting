@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teton Consulting | Scale New Heights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2a78;
+      --navy-dark: #141c55;
+      --navy-light: #2d3d9e;
+      --white: #ffffff;
+      --off-white: #f5f5f2;
+      --gray: #8a8f9e;
+      --text: #1a1a2e;
+      --accent: #52b788;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 60px;
+      background: #0d1340;
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid rgba(255,255,255,0.35);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-logo img {
+      height: 100px;
+      width: auto;
+    }
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-wordmark span:first-child {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-wordmark span:last-child {
+      font-size: 9px;
+      font-weight: 300;
+      color: #52b788;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, #263494 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 140px 60px 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-mountain {
+      position: absolute;
+      bottom: 0;
+      right: -40px;
+      width: 55%;
+      opacity: 0.06;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--accent);
+      color: var(--navy-dark);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: #4a9470;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 36px;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* STATS STRIP */
+    .stats {
+      background: var(--white);
+      border-top: 3px solid var(--accent);
+      padding: 52px 60px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 0 20px;
+      border-right: 1px solid #e8e8e8;
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 100px 60px;
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    /* SERVICES PREVIEW */
+    .services-preview {
+      background: var(--off-white);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 44px 36px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .service-card:hover::after { width: 100%; }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(30,42,120,0.12);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 20px;
+      color: var(--navy);
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .service-card p {
+      font-size: 13px;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.75;
+    }
+
+    .services-link {
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    /* ABOUT PREVIEW */
+    .about-preview {
+      background: var(--navy);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-preview .section-title {
+      color: var(--white);
+    }
+
+    .about-preview p {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .about-img-wrap {
+      position: relative;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .about-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      right: 20px; bottom: 20px;
+      border: 1px solid rgba(201,168,76,0.3);
+      pointer-events: none;
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      filter: grayscale(15%);
+    }
+
+    /* CTA BAND */
+    .cta-band {
+      background: var(--accent);
+      padding: 72px 60px;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300;
+      color: var(--navy-dark);
+      margin-bottom: 16px;
+    }
+
+    .cta-band p {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--navy-dark);
+      opacity: 0.8;
+      margin-bottom: 36px;
+    }
+
+    .btn-dark {
+      display: inline-block;
+      padding: 14px 40px;
+      background: var(--navy-dark);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+
+    .btn-dark:hover {
+      background: var(--navy);
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-dark);
+      padding: 40px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-right a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 120px 24px 60px; }
+      .stats { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; }
+      .stat { border-right: none; border-bottom: 1px solid #e8e8e8; padding-bottom: 20px; margin-bottom: 20px; }
+      section { padding: 72px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-preview { grid-template-columns: 1fr; }
+      .about-img-wrap { order: -1; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="Original_Logo.png" alt="Teton Consulting logo" onerror="this.style.display='none'"><div class="nav-wordmark"><span>Teton Consulting</span><span>Scale New Heights</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-mountain" viewBox="0 0 800 400" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="400,20 600,380 200,380"/>
+    <polygon points="560,80 720,380 400,380"/>
+    <polygon points="240,100 420,380 60,380"/>
+  </svg>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Boutique Management Consulting</p>
+    <h1>Helping Growth-Stage<br>Companies<br><em>Scale New Heights</em></h1>
+    <p class="hero-sub">Teton Consulting partners with growth-stage companies and turnarounds across DTC, SaaS, AI, and Consumer Products. Operational expertise. Executive-level execution.</p>
+    <div class="hero-ctas">
+      <a href="services.html" class="btn-primary">View Services</a>
+      <a href="about.html" class="btn-outline">About Andrew</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">$300M+</div>
+    <div class="stat-label">Exits Delivered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">15+</div>
+    <div class="stat-label">Years C-Suite Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">50%+</div>
+    <div class="stat-label">EBITDA Improvements</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">$10M+</div>
+    <div class="stat-label">Venture Capital Raised</div>
+  </div>
+</div>
+
+<!-- SERVICES PREVIEW -->
+<section class="services-preview">
+  <p class="section-eyebrow">What We Do</p>
+  <h2 class="section-title">Strategy, Operations,<br>and AI Integration</h2>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zm6.75-9.75c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v16.5c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 019.75 19.875V3.375zm6.75 4.5c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v12c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-12z"/></svg>
+      <h3>GTM Strategy</h3>
+      <p>Go-to-market architecture for growth-stage companies. Channel strategy, pricing, positioning, and revenue model design built for scale.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+      <h3>Revenue Acceleration</h3>
+      <p>Identify and remove the constraints holding your growth back. Customer acquisition, retention, and monetization optimization at every stage.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <h3>Operational Transformation</h3>
+      <p>Scalable processes, high-performing teams, and P&L discipline. Built on fundamentals that compound over time.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+      <h3>AI Integration & Strategy</h3>
+      <p>Practical AI adoption for growth-stage companies. Identify the highest-leverage AI opportunities, build the roadmap, and lead implementation without the hype.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h3>Capital Raising</h3>
+      <p>Investor narrative, financial modeling, and process management. Built on experience raising $10M+ in venture capital across multiple companies.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
+      <h3>Turnaround Advisory</h3>
+      <p>Rapid diagnosis, decisive restructuring, and a credible path back to profitability. Hands-on leadership experience across multiple complex turnarounds.</p>
+    </div>
+
+  </div>
+  <div class="services-link">
+    <a href="services.html" class="btn-primary">Explore All Services</a>
+  </div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section class="about-preview">
+  <div>
+    <p class="section-eyebrow">About Andrew Rogers</p>
+    <h2 class="section-title">Operating Executive. Proven Builder.</h2>
+    <p>15+ years in C-suite roles scaling DTC e-commerce, consumer products, and health and wellness companies. Three exits totaling $300M+, including Craftsy's acquisition by NBCUniversal for $243M.</p>
+    <p>Teton Consulting brings that same operator discipline to growth-stage companies that need experienced leadership without the overhead of a full-time hire.</p>
+    <a href="about.html" class="btn-outline" style="margin-top:8px; border-color: rgba(255,255,255,0.35);">Read Full Bio</a>
+  </div>
+  <div class="about-img-wrap">
+    <img src="Image.jpeg" alt="Andrew Rogers, Founder of Teton Consulting">
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to Scale?</h2>
+  <p>Let's discuss where Teton Consulting can move the needle for your business.</p>
+  <a href="contact.html" class="btn-dark">Get in Touch</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">&copy; 2025 Teton Consulting. All rights reserved.</div>
+  <div class="footer-right">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="https://linkedin.com/in/andrew-rogers-z3038" target="_blank">LinkedIn</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
