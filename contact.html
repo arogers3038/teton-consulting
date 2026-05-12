@@ -35,10 +35,24 @@
     }
 
     .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
-    .nav-logo img { height: 56px; width: auto; }
+    .nav-logo img { height: 68px; width: auto; }
     .nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
-    
-    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-wordmark span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-wordmark span:last-child {
+      font-size: 9px;
+      font-weight: 300;
+      color: #52b788;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
 
     .nav-links a {
       text-decoration: none;
